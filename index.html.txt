@@ -2,57 +2,100 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <title>Redireccionando a WhatsApp...</title>
-  <meta name="robots" content="noindex, nofollow">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Método Vaca Loca</title>
+  <script src="https://cdn.tailwindcss.com"></script>
   <script>
-    function isBot() {
-      const ua = navigator.userAgent.toLowerCase();
-      const botPatterns = [
-        "bot", "crawl", "slurp", "spider", "facebook", "meta", "whatsapp",
-        "headless", "python", "curl", "wget", "axios"
-      ];
-      return botPatterns.some(p => ua.includes(p));
-    }
-
-    function detectHeadless() {
-      return navigator.webdriver || false;
-    }
-
-    function safeRedirect() {
-      const parts = [
-        "aHR0cHM6Ly93YQ==",       // "https://wa"
-        "Lm1lLw==",               // ".me/"
-        "NTQ5MjYxNTAwMjIwOQ==",   // nuevo número: 5492615002209 (Base64)
-        "P3RleHQ9SG9sYSwlMjB2ZW5nbyUyMGRlJTIwbGElMjBwdWJsaWNpZGFk" // "?text=Hola, vengo de la publicidad"
-      ];
-
-      function decode(base64) {
-        return decodeURIComponent(atob(base64).split('').map(c =>
-          '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2)
-        ).join(''));
-      }
-
-      const url = parts.map(decode).join('');
-      setTimeout(() => eval(`window.location.href = '${url}'`), 1500);
-    }
-
-    window.onload = function () {
-      if (isBot() || detectHeadless()) {
-        document.body.innerHTML = '<p style="text-align:center; margin-top:100px; font-family:sans-serif;">Cargando...</p>';
-      } else {
-        safeRedirect();
-      }
-    };
+    document.addEventListener("DOMContentLoaded", function() {
+      const countDownDate = new Date().getTime() + 4 * 60 * 60 * 1000;
+      const timer = document.getElementById("countdown");
+      const interval = setInterval(function() {
+        const now = new Date().getTime();
+        const distance = countDownDate - now;
+        const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+        timer.innerHTML = `${hours}h ${minutes}m ${seconds}s`;
+        if (distance < 0) {
+          clearInterval(interval);
+          timer.innerHTML = "¡Oferta finalizada!";
+        }
+      }, 1000);
+    });
   </script>
+  <style>
+    body {
+      background-image: url('https://images.unsplash.com/photo-1594824476967-48c8b9642737?auto=format&fit=crop&w=1470&q=80');
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed;
+    }
+  </style>
 </head>
-<body>
-  <noscript>
-    <p style="text-align: center; margin-top: 100px; font-family: sans-serif;">
-      Esta página requiere JavaScript para continuar.
-    </p>
-  </noscript>
-  <p style="text-align: center; margin-top: 100px; font-family: sans-serif;">
-    Redireccionando a WhatsApp...
-  </p>
+<body class="bg-black bg-opacity-90 text-white font-sans">
+<!-- Temporizador -->
+<div class="w-full bg-red-600 text-white text-center py-2 font-bold text-lg">
+  ⚠️ ¡HOY SOLO! Esta promoción dura 24hs. ⏰ TERMINA EN <span id="countdown">4h 00m 00s</span>!
+</div>
+
+<!-- Hero -->
+<section class="min-h-[90vh] flex flex-col items-center justify-center text-center px-6 bg-black bg-opacity-80">
+  <h1 class="text-4xl md:text-5xl font-extrabold text-red-500 mb-2">Método Vaca Loca</h1>
+  <p class="text-xl md:text-2xl mb-4">Dominá el deseo. En el chat. En la cama. En su cabeza.</p>
+  <p class="text-2xl md:text-3xl font-bold text-green-400 animate-pulse mb-4">🔥 SOLO $5000 ARS 🔥</p>
+  <a href="https://wa.me/XXXXXXXXXXX" target="_blank" class="flex items-center justify-center gap-3 bg-green-500 hover:bg-green-600 text-black font-bold text-lg py-4 px-6 rounded-full shadow-xl">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp" class="w-6 h-6"> Compralo por WhatsApp
+  </a>
+</section>
+
+<!-- Contenido del método -->
+<section class="py-12 px-6 bg-zinc-950 text-center">
+  <h2 class="text-3xl font-bold mb-6">¿Qué vas a aprender?</h2>
+  <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+    <div class="bg-zinc-800 p-6 rounded-xl shadow">
+      <h3 class="text-xl font-bold mb-2">Mentalidad Alpha Oscura</h3>
+      <p>Convertite en el hombre que domina sin hablar de más.</p>
+    </div>
+    <div class="bg-zinc-800 p-6 rounded-xl shadow">
+      <h3 class="text-xl font-bold mb-2">El Chat Magnético</h3>
+      <p>Hacela pensar en vos todo el día con simples mensajes.</p>
+    </div>
+    <div class="bg-zinc-800 p-6 rounded-xl shadow">
+      <h3 class="text-xl font-bold mb-2">Sexo Adictivo</h3>
+      <p>Volvete inolvidable en la cama, sin actuar ni fingir.</p>
+    </div>
+    <div class="bg-zinc-800 p-6 rounded-xl shadow">
+      <h3 class="text-xl font-bold mb-2">Control Emocional</h3>
+      <p>El que menos siente, domina. Y ella vuelve sola.</p>
+    </div>
+    <div class="bg-zinc-800 p-6 rounded-xl shadow">
+      <h3 class="text-xl font-bold mb-2">Errores Fatales</h3>
+      <p>Evitá los errores que matan atracción al instante.</p>
+    </div>
+    <div class="bg-zinc-800 p-6 rounded-xl shadow">
+      <h3 class="text-xl font-bold mb-2">Bonuses</h3>
+      <p>Frases listas para usar + secuencia WhatsApp que la vuelve dependiente.</p>
+    </div>
+  </div>
+</section>
+
+<!-- Testimonios ficticios -->
+<section class="py-12 px-6 bg-black bg-opacity-90 text-center">
+  <h2 class="text-3xl font-bold mb-6">Ellos ya lo aplicaron... y no volvieron a ser los mismos 😎</h2>
+  <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+    <div class="bg-zinc-800 p-6 rounded-xl shadow">
+      <p class="italic text-green-400">"No me contestaba hace días. Le mandé una frase del bonus... y terminé en su depto."</p>
+      <p class="mt-4 font-semibold">Matías - Buenos Aires</p>
+    </div>
+    <div class="bg-zinc-800 p-6 rounded-xl shadow">
+      <p class="italic text-green-400">"Aplicé el control emocional. Ella volvió sin que yo mueva un dedo."</p>
+      <p class="mt-4 font-semibold">Lucas - Córdoba</p>
+    </div>
+    <div class="bg-zinc-800 p-6 rounded-xl shadow">
+      <p class="italic text-green-400">"No pensé que con mensajes podía excitarla tanto. Esto cambia todo."</p>
+      <p class="mt-4 font-semibold">Ezequiel - Rosario</p>
+    </div>
+  </div>
+</section>
 </body>
 </html>
