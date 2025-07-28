@@ -14,29 +14,30 @@
       text-align: center;
     }
     header {
-      padding: 60px 20px 30px;
+      padding: 40px 20px 20px;
       background: linear-gradient(to bottom, #050, #000);
       position: relative;
     }
     h1 {
-      font-size: 2.2rem;
+      font-size: 2rem;
       color: #0f0;
+      margin: 10px 0;
     }
     h2 {
       font-size: 1.2rem;
       color: #ccc;
-      margin-top: 10px;
+      margin: 10px 0;
     }
     .boton-grande {
       display: inline-block;
       background: #0f0;
       color: #000;
       font-weight: bold;
-      padding: 16px 30px;
-      font-size: 1.2rem;
+      padding: 14px 28px;
+      font-size: 1rem;
       border-radius: 12px;
       text-decoration: none;
-      margin: 30px auto;
+      margin: 20px auto;
       animation: pulso 1.5s infinite;
     }
     @keyframes pulso {
@@ -45,7 +46,7 @@
       100% { box-shadow: 0 0 0px #0f0; }
     }
     section {
-      padding: 40px 20px;
+      padding: 30px 15px;
     }
     .juegos {
       font-size: 1.1rem;
@@ -63,43 +64,44 @@
       transform: translateX(-50%);
       background: #0f0;
       color: #000;
-      padding: 14px 24px;
+      padding: 12px 22px;
       font-weight: bold;
       border-radius: 50px;
       text-decoration: none;
       box-shadow: 0 0 10px #0f0;
       animation: rebote 1s infinite;
       z-index: 1000;
+      font-size: 0.95rem;
     }
     @keyframes rebote {
       0%, 100% { transform: translate(-50%, 0); }
       50% { transform: translate(-50%, -8px); }
     }
     .contador {
-      font-size: 1.4rem;
-      margin: 20px auto;
-      padding: 12px 20px;
+      font-size: 1rem;
+      margin: 10px auto;
+      padding: 10px 16px;
       background: #ff0000;
       color: #fff;
       font-weight: bold;
       display: inline-block;
-      border-radius: 10px;
+      border-radius: 8px;
       box-shadow: 0 0 10px #f00;
     }
     .separador {
       height: 1px;
       background: #0f0;
       width: 80%;
-      margin: 40px auto;
+      margin: 30px auto;
       opacity: 0.2;
     }
     .testimonio {
       background: #111;
       border: 1px solid #0f0;
       border-radius: 10px;
-      margin: 20px auto;
-      padding: 20px;
-      max-width: 400px;
+      margin: 15px auto;
+      padding: 15px;
+      max-width: 380px;
       text-align: left;
       display: flex;
       align-items: center;
@@ -107,8 +109,8 @@
       color: #ccc;
     }
     .testimonio img {
-      width: 60px;
-      height: 60px;
+      width: 55px;
+      height: 55px;
       border-radius: 50%;
       object-fit: cover;
       border: 2px solid #0f0;
@@ -125,14 +127,14 @@
 </head>
 <body>
   <header>
+    <div class="contador" id="countdown"></div>
     <h1>💰 ¡BONO DE BIENVENIDA ACTIVADO!</h1>
     <h2>Jugá desde el celu y cobrá hoy mismo</h2>
-    <div class="contador" id="countdown"></div>
     <a href="#" id="cta" class="boton-grande">PEDIR BONO AHORA</a>
   </header>
 
   <section>
-    <h2>Hasta +20% en cargas mayores a $3.000 – Solo por hoy</h2>
+    <h2>+20% en cargas mayores a $3.000 – Solo por hoy</h2>
     <div class="separador"></div>
     <p class="juegos">🐔 Pollo – 🎈 Globo – 🎹 Piano – 🧱 Torre – ❄️ Yeti</p>
     <p class="juegos">Jugá sin descargar nada. Desde WhatsApp.</p>
@@ -154,12 +156,21 @@
         <div class="mensaje">Pensé que era joda. Hoy cobro todas las semanas 😱</div>
       </div>
     </div>
+    <div class="testimonio">
+      <img src="https://randomuser.me/api/portraits/men/52.jpg" alt="Jugador 3">
+      <div class="contenido">
+        <div class="nombre">Nahuel G.</div>
+        <div class="mensaje">Gané con el globo y retiré en menos de 5 minutos. ¡Muy bueno!</div>
+      </div>
+    </div>
+    <div class="testimonio">
+      <img src="https://randomuser.me/api/portraits/women/21.jpg" alt="Jugador 4">
+      <div class="contenido">
+        <div class="nombre">Antonella S.</div>
+        <div class="mensaje">Recargué $3.000 y me dieron bono extra. Retiré sin problema.</div>
+      </div>
+    </div>
     <div class="separador"></div>
-  </section>
-
-  <section>
-    <h2>⚠️ Bono disponible solo hasta las 23:59 de hoy</h2>
-    <p>⛔ Oferta exclusiva para nuevos jugadores</p>
   </section>
 
   <footer>
@@ -178,7 +189,7 @@
     document.getElementById("flotante").href = url;
 
     // Contador regresivo de urgencia (5 minutos)
-    let duracion = 5 * 60; // 5 minutos en segundos
+    let duracion = 5 * 60;
     const countdown = document.getElementById("countdown");
     const intervalo = setInterval(() => {
       const minutos = Math.floor(duracion / 60);
