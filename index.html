@@ -14,17 +14,17 @@
       text-align: center;
     }
     header {
-      padding: 40px 20px 20px;
+      padding: 30px 20px 20px;
       background: linear-gradient(to bottom, #050, #000);
       position: relative;
     }
     h1 {
-      font-size: 2rem;
+      font-size: 1.8rem;
       color: #0f0;
       margin: 10px 0;
     }
     h2 {
-      font-size: 1.2rem;
+      font-size: 1.1rem;
       color: #ccc;
       margin: 10px 0;
     }
@@ -33,9 +33,9 @@
       background: #0f0;
       color: #000;
       font-weight: bold;
-      padding: 14px 28px;
-      font-size: 1rem;
-      border-radius: 12px;
+      padding: 16px 30px;
+      font-size: 1.1rem;
+      border-radius: 14px;
       text-decoration: none;
       margin: 20px auto;
       animation: pulso 1.5s infinite;
@@ -49,7 +49,7 @@
       padding: 30px 15px;
     }
     .juegos {
-      font-size: 1.1rem;
+      font-size: 1rem;
       margin: 10px 0;
     }
     footer {
@@ -64,14 +64,14 @@
       transform: translateX(-50%);
       background: #0f0;
       color: #000;
-      padding: 12px 22px;
+      padding: 14px 28px;
       font-weight: bold;
       border-radius: 50px;
       text-decoration: none;
       box-shadow: 0 0 10px #0f0;
       animation: rebote 1s infinite;
       z-index: 1000;
-      font-size: 0.95rem;
+      font-size: 1rem;
     }
     @keyframes rebote {
       0%, 100% { transform: translate(-50%, 0); }
@@ -79,7 +79,7 @@
     }
     .contador {
       font-size: 1rem;
-      margin: 10px auto;
+      margin: 0 auto 16px;
       padding: 10px 16px;
       background: #ff0000;
       color: #fff;
@@ -123,12 +123,18 @@
       font-weight: bold;
       margin-bottom: 5px;
     }
+    @media screen and (max-width: 480px) {
+      h1 { font-size: 1.6rem; }
+      h2 { font-size: 1rem; }
+      .boton-grande { font-size: 1rem; padding: 14px 24px; }
+      .boton-flotante { font-size: 0.9rem; padding: 12px 20px; }
+    }
   </style>
 </head>
 <body>
   <header>
     <div class="contador" id="countdown"></div>
-    <h1>💰 ¡BONO DE BIENVENIDA ACTIVADO!</h1>
+    <h1>¡BONO DE BIENVENIDA ACTIVADO!</h1>
     <h2>Jugá desde el celu y cobrá hoy mismo</h2>
     <a href="#" id="cta" class="boton-grande">PEDIR BONO AHORA</a>
   </header>
@@ -203,3 +209,4 @@
   </script>
 </body>
 </html>
+
