@@ -16,6 +16,7 @@
     header {
       padding: 60px 20px 30px;
       background: linear-gradient(to bottom, #050, #000);
+      position: relative;
     }
     h1 {
       font-size: 2.2rem;
@@ -68,16 +69,29 @@
       text-decoration: none;
       box-shadow: 0 0 10px #0f0;
       animation: rebote 1s infinite;
+      z-index: 1000;
     }
     @keyframes rebote {
       0%, 100% { transform: translate(-50%, 0); }
       50% { transform: translate(-50%, -8px); }
     }
     .contador {
-      font-size: 1.6rem;
-      margin-top: 10px;
-      color: #f00;
+      font-size: 1.4rem;
+      margin: 20px auto;
+      padding: 12px 20px;
+      background: #ff0000;
+      color: #fff;
       font-weight: bold;
+      display: inline-block;
+      border-radius: 10px;
+      box-shadow: 0 0 10px #f00;
+    }
+    .separador {
+      height: 1px;
+      background: #0f0;
+      width: 80%;
+      margin: 40px auto;
+      opacity: 0.2;
     }
   </style>
 </head>
@@ -85,12 +99,13 @@
   <header>
     <h1>💰 ¡BONO DE BIENVENIDA ACTIVADO!</h1>
     <h2>Jugá desde el celu y cobrá hoy mismo</h2>
+    <div class="contador" id="countdown"></div>
     <a href="#" id="cta" class="boton-grande">PEDIR BONO AHORA</a>
   </header>
 
   <section>
     <h2>Hasta +20% en cargas mayores a $3.000 – Solo por hoy</h2>
-    <div class="contador" id="countdown"></div>
+    <div class="separador"></div>
     <p class="juegos">🐔 Pollo – 🎈 Globo – 🎹 Piano – 🧱 Torre – ❄️ Yeti</p>
     <p class="juegos">Jugá sin descargar nada. Desde WhatsApp.</p>
   </section>
@@ -99,6 +114,7 @@
     <h2>Testimonios de jugadores reales</h2>
     <p>“Cargué $5.000 y retiré $22.000 con el del pollo”</p>
     <p>“Pensé que era joda. Hoy cobro todas las semanas 😱”</p>
+    <div class="separador"></div>
   </section>
 
   <section>
@@ -127,10 +143,10 @@
     const intervalo = setInterval(() => {
       const minutos = Math.floor(duracion / 60);
       const segundos = duracion % 60;
-      countdown.textContent = `⏳ Tu bono expira en: ${minutos}:${segundos.toString().padStart(2, '0')}`;
+      countdown.textContent = `⏳ TU BONO EXPIRA EN: ${minutos}:${segundos.toString().padStart(2, '0')}`;
       if (--duracion < 0) {
         clearInterval(intervalo);
-        countdown.textContent = "⚠️ El bono expiró. Recargá la página.";
+        countdown.textContent = "❌ EL BONO EXPIRÓ. RECARGÁ LA PÁGINA.";
       }
     }, 1000);
   </script>
