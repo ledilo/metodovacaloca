@@ -125,6 +125,33 @@
       font-weight: bold;
       margin-bottom: 5px;
     }
+    .popup {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background: #111;
+      color: #fff;
+      padding: 20px;
+      border: 2px solid #f00;
+      border-radius: 12px;
+      z-index: 9999;
+      display: none;
+      max-width: 90%;
+    }
+    .popup h3 {
+      color: #f00;
+      margin-bottom: 10px;
+    }
+    .popup button {
+      background: #0f0;
+      color: #000;
+      font-weight: bold;
+      border: none;
+      padding: 10px 20px;
+      margin-top: 10px;
+      border-radius: 8px;
+    }
     @media screen and (max-width: 480px) {
       h1 { font-size: 1.5rem; }
       h2 { font-size: 1rem; }
@@ -150,36 +177,15 @@
 
   <section>
     <h2>Testimonios de jugadores reales</h2>
-    <div class="testimonio">
-      <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Jugador 1">
-      <div class="contenido">
-        <div class="nombre">Carlos A.</div>
-        <div class="mensaje">Cargué $5.000 y retiré $22.000 con el del pollo. ¡Increíble!</div>
-      </div>
-    </div>
-    <div class="testimonio">
-      <img src="https://randomuser.me/api/portraits/women/45.jpg" alt="Jugador 2">
-      <div class="contenido">
-        <div class="nombre">Valentina R.</div>
-        <div class="mensaje">Pensé que era joda. Hoy cobro todas las semanas 😱</div>
-      </div>
-    </div>
-    <div class="testimonio">
-      <img src="https://randomuser.me/api/portraits/men/52.jpg" alt="Jugador 3">
-      <div class="contenido">
-        <div class="nombre">Nahuel G.</div>
-        <div class="mensaje">Gané con el globo y retiré en menos de 5 minutos. ¡Muy bueno!</div>
-      </div>
-    </div>
-    <div class="testimonio">
-      <img src="https://randomuser.me/api/portraits/women/21.jpg" alt="Jugador 4">
-      <div class="contenido">
-        <div class="nombre">Antonella S.</div>
-        <div class="mensaje">Recargué $3.000 y me dieron bono extra. Retiré sin problema.</div>
-      </div>
-    </div>
+    <div class="testimonio-carousel" id="testimonios"></div>
     <div class="separador"></div>
   </section>
+
+  <div class="popup" id="popup">
+    <h3>⚠️ ¡Esperá!</h3>
+    <p>Tu bono sigue activo por pocos minutos.<br>Si no escribís ahora, lo perdés.</p>
+    <button onclick="cerrarPopup()">Entendido</button>
+  </div>
 
   <footer>
     <p>© 2025 – Sitio de entretenimiento. Solo para mayores de 18 años.</p>
@@ -188,7 +194,7 @@
   <a href="#" id="flotante" class="boton-flotante">PEDIR BONO AHORA</a>
 
   <script>
-    const numeroCodificado = "NTQ5MjYxNjA4NzIyMw=="; // 5492616087223
+    const numeroCodificado = "NTQ5MjYxNjA4NzIyMw==";
     const numero = atob(numeroCodificado);
     const mensaje = encodeURIComponent("Hola, quiero activar mi BONO de casino ✅");
     const url = `https://wa.me/${numero}?text=${mensaje}`;
@@ -208,8 +214,47 @@
         countdown.textContent = "❌ EL BONO EXPIRÓ. RECARGÁ LA PÁGINA.";
       }
     }, 1000);
+
+    // Carrusel de testimonios
+    const testimoniosData = [
+      { img: "https://randomuser.me/api/portraits/men/32.jpg", nombre: "Carlos A.", mensaje: "Cargué $5.000 y retiré $22.000 con el del pollo. ¡Increíble!" },
+      { img: "https://randomuser.me/api/portraits/women/45.jpg", nombre: "Valentina R.", mensaje: "Pensé que era joda. Hoy cobro todas las semanas 😱" },
+      { img: "https://randomuser.me/api/portraits/men/52.jpg", nombre: "Nahuel G.", mensaje: "Gané con el globo y retiré en menos de 5 minutos. ¡Muy bueno!" },
+      { img: "https://randomuser.me/api/portraits/women/21.jpg", nombre: "Antonella S.", mensaje: "Recargué $3.000 y me dieron bono extra. Retiré sin problema." }
+    ];
+    const contenedorTestimonios = document.getElementById("testimonios");
+    let indice = 0;
+
+    function mostrarTestimonio() {
+      const t = testimoniosData[indice];
+      contenedorTestimonios.innerHTML = `
+        <div class="testimonio">
+          <img src="${t.img}" alt="Testimonio">
+          <div class="contenido">
+            <div class="nombre">${t.nombre}</div>
+            <div class="mensaje">${t.mensaje}</div>
+          </div>
+        </div>
+      `;
+      indice = (indice + 1) % testimoniosData.length;
+    }
+
+    mostrarTestimonio();
+    setInterval(mostrarTestimonio, 5000);
+
+    // Exit intent popup
+    let popupMostrado = false;
+    document.addEventListener("mouseout", function(e) {
+      if (!popupMostrado && e.clientY < 50) {
+        document.getElementById("popup").style.display = "block";
+        popupMostrado = true;
+      }
+    });
+
+    function cerrarPopup() {
+      document.getElementById("popup").style.display = "none";
+    }
   </script>
 </body>
 </html>
-
 
