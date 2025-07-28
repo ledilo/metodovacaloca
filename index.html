@@ -33,8 +33,8 @@
       background: #0f0;
       color: #000;
       font-weight: bold;
-      padding: 16px 30px;
-      font-size: 1.1rem;
+      padding: 18px 34px;
+      font-size: 1.2rem;
       border-radius: 14px;
       text-decoration: none;
       margin: 20px auto;
@@ -71,7 +71,7 @@
       box-shadow: 0 0 10px #0f0;
       animation: rebote 1s infinite;
       z-index: 1000;
-      font-size: 1rem;
+      font-size: 1.1rem;
     }
     @keyframes rebote {
       0%, 100% { transform: translate(-50%, 0); }
@@ -87,6 +87,8 @@
       display: inline-block;
       border-radius: 8px;
       box-shadow: 0 0 10px #f00;
+      opacity: 1;
+      transition: opacity 0.3s ease-in;
     }
     .separador {
       height: 1px;
@@ -124,16 +126,16 @@
       margin-bottom: 5px;
     }
     @media screen and (max-width: 480px) {
-      h1 { font-size: 1.6rem; }
+      h1 { font-size: 1.5rem; }
       h2 { font-size: 1rem; }
-      .boton-grande { font-size: 1rem; padding: 14px 24px; }
-      .boton-flotante { font-size: 0.9rem; padding: 12px 20px; }
+      .boton-grande { font-size: 1.1rem; padding: 16px 26px; }
+      .boton-flotante { font-size: 1rem; padding: 12px 24px; }
     }
   </style>
 </head>
 <body>
   <header>
-    <div class="contador" id="countdown"></div>
+    <div class="contador" id="countdown">⏳ TU BONO EXPIRA EN: 5:00</div>
     <h1>¡BONO DE BIENVENIDA ACTIVADO!</h1>
     <h2>Jugá desde el celu y cobrá hoy mismo</h2>
     <a href="#" id="cta" class="boton-grande">PEDIR BONO AHORA</a>
@@ -194,7 +196,7 @@
     document.getElementById("cta").href = url;
     document.getElementById("flotante").href = url;
 
-    // Contador regresivo de urgencia (5 minutos)
+    // Contador regresivo inmediato
     let duracion = 5 * 60;
     const countdown = document.getElementById("countdown");
     const intervalo = setInterval(() => {
@@ -209,4 +211,5 @@
   </script>
 </body>
 </html>
+
 
