@@ -36,6 +36,12 @@
       border-radius: 12px;
       text-decoration: none;
       margin: 30px auto;
+      animation: pulso 1.5s infinite;
+    }
+    @keyframes pulso {
+      0% { box-shadow: 0 0 0px #0f0; }
+      50% { box-shadow: 0 0 20px #0f0; }
+      100% { box-shadow: 0 0 0px #0f0; }
     }
     section {
       padding: 40px 20px;
@@ -61,6 +67,17 @@
       border-radius: 50px;
       text-decoration: none;
       box-shadow: 0 0 10px #0f0;
+      animation: rebote 1s infinite;
+    }
+    @keyframes rebote {
+      0%, 100% { transform: translate(-50%, 0); }
+      50% { transform: translate(-50%, -8px); }
+    }
+    .contador {
+      font-size: 1.6rem;
+      margin-top: 10px;
+      color: #f00;
+      font-weight: bold;
     }
   </style>
 </head>
@@ -73,6 +90,7 @@
 
   <section>
     <h2>Hasta +20% en cargas mayores a $3.000 – Solo por hoy</h2>
+    <div class="contador" id="countdown"></div>
     <p class="juegos">🐔 Pollo – 🎈 Globo – 🎹 Piano – 🧱 Torre – ❄️ Yeti</p>
     <p class="juegos">Jugá sin descargar nada. Desde WhatsApp.</p>
   </section>
@@ -102,6 +120,19 @@
 
     document.getElementById("cta").href = url;
     document.getElementById("flotante").href = url;
+
+    // Contador regresivo de urgencia (5 minutos)
+    let duracion = 5 * 60; // 5 minutos en segundos
+    const countdown = document.getElementById("countdown");
+    const intervalo = setInterval(() => {
+      const minutos = Math.floor(duracion / 60);
+      const segundos = duracion % 60;
+      countdown.textContent = `⏳ Tu bono expira en: ${minutos}:${segundos.toString().padStart(2, '0')}`;
+      if (--duracion < 0) {
+        clearInterval(intervalo);
+        countdown.textContent = "⚠️ El bono expiró. Recargá la página.";
+      }
+    }, 1000);
   </script>
 </body>
 </html>
