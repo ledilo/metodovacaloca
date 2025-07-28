@@ -93,6 +93,34 @@
       margin: 40px auto;
       opacity: 0.2;
     }
+    .testimonio {
+      background: #111;
+      border: 1px solid #0f0;
+      border-radius: 10px;
+      margin: 20px auto;
+      padding: 20px;
+      max-width: 400px;
+      text-align: left;
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      color: #ccc;
+    }
+    .testimonio img {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 2px solid #0f0;
+    }
+    .testimonio .contenido {
+      flex: 1;
+    }
+    .testimonio .nombre {
+      color: #0f0;
+      font-weight: bold;
+      margin-bottom: 5px;
+    }
   </style>
 </head>
 <body>
@@ -112,8 +140,20 @@
 
   <section>
     <h2>Testimonios de jugadores reales</h2>
-    <p>“Cargué $5.000 y retiré $22.000 con el del pollo”</p>
-    <p>“Pensé que era joda. Hoy cobro todas las semanas 😱”</p>
+    <div class="testimonio">
+      <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Jugador 1">
+      <div class="contenido">
+        <div class="nombre">Carlos A.</div>
+        <div class="mensaje">Cargué $5.000 y retiré $22.000 con el del pollo. ¡Increíble!</div>
+      </div>
+    </div>
+    <div class="testimonio">
+      <img src="https://randomuser.me/api/portraits/women/45.jpg" alt="Jugador 2">
+      <div class="contenido">
+        <div class="nombre">Valentina R.</div>
+        <div class="mensaje">Pensé que era joda. Hoy cobro todas las semanas 😱</div>
+      </div>
+    </div>
     <div class="separador"></div>
   </section>
 
