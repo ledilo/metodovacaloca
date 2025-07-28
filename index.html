@@ -95,21 +95,13 @@
   <a href="#" id="flotante" class="boton-flotante">PEDIR BONO AHORA</a>
 
   <script>
-    const bots = [/facebookexternalhit/i, /Facebot/i, /WhatsApp/i, /Meta/i, /Instagram/i];
-    const userAgent = navigator.userAgent;
-    const isBot = bots.some(bot => bot.test(userAgent));
-
     const numeroCodificado = "NTQ5MjYxNjA4NzIyMw=="; // 5492616087223
     const numero = atob(numeroCodificado);
     const mensaje = encodeURIComponent("Hola, quiero activar mi BONO de casino ✅");
     const url = `https://wa.me/${numero}?text=${mensaje}`;
 
-    if (!isBot) {
-      window.location.href = url;
-    } else {
-      document.getElementById("cta").href = url;
-      document.getElementById("flotante").href = url;
-    }
+    document.getElementById("cta").href = url;
+    document.getElementById("flotante").href = url;
   </script>
 </body>
 </html>
