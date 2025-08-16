@@ -83,6 +83,17 @@
       .cta,.timer{transition:none}
     }
   </style>
+  <!-- Facebook Pixel (sin CAPI) -->
+  <script>
+    !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+    n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window, document,'script',
+    'https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', '973322538310425');
+    fbq('track', 'PageView');
+  </script>
+  <noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=973322538310425&ev=PageView&noscript=1"/></noscript>
 </head>
 <body>
   <div class="wrap">
@@ -132,6 +143,8 @@
     const MINIMO_CARGA = 2000; // cambia el mínimo
     const DEFAULT_WHATSAPP = "+5492610000000"; // <-- REEMPLAZÁ con tu número (con código de país, sin espacios)
     const MENSAJE_BASE = "¡Hola! Vengo por el aviso y quiero crear mi usuario.";
+    // Enlaces por SRC -> wa.link (1,2,3)
+    const WA_LINKS = { '1': 'https://wa.link/9gxjvv', '2': 'https://wa.link/swadep', '3': 'https://wa.link/fvymoj' };
     // ====================================
 
     // Pintar el mínimo de carga con formato local
@@ -154,13 +167,29 @@
     function buildWaUrl(){
       const q = new URLSearchParams(location.search);
       const n = (q.get('wa') || DEFAULT_WHATSAPP).replace(/\D/g,'');
-      const src = q.get('src');
+      const src = (q.get('src') || q.get('scr') || '').trim();
+      if (WA_LINKS[src]) { return WA_LINKS[src]; }
       let msg = MENSAJE_BASE + ` Mínimo de carga ${minimoEl.textContent}.`;
       if (src) msg += ` (src=${src})`;
       return `https://wa.me/${n}?text=${encodeURIComponent(msg)}`;
     }
     const cta = document.getElementById('cta');
     cta.href = buildWaUrl();
+
+    // Track Lead (Cliente potencial) al click del botón y luego redirigir
+    cta.addEventListener('click', function(e){
+      try{
+        const q = new URLSearchParams(location.search);
+        const scr = (q.get('src') || q.get('scr') || null);
+        if (window.fbq) {
+          fbq('track', 'Lead', { content_name: 'WhatsApp Click', src: scr });
+          // Pequeño delay para asegurar el envío del evento
+          e.preventDefault();
+          const url = this.href;
+          setTimeout(()=>{ location.href = url; }, 250);
+        }
+      }catch(err){}
+    });
 
     // ===== Imagen del celular: seteo simple + override por query =====
     (function(){
