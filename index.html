@@ -56,7 +56,7 @@
     .device-img{width:min(440px,78vw);height:auto;filter:drop-shadow(0 24px 48px rgba(0,0,0,.6)) drop-shadow(0 0 32px rgba(30,167,255,.22))}
 
     /* Fallback "celular" por CSS si no se sube la imagen */
-    .device-css{display:none;position:relative;width:min(400px,78vw);height:calc(min(400px,78vw)*2.02);border-radius:36px;padding:18px;background:linear-gradient(180deg,#0f1627,#0a0f1c);box-shadow:var(--shadow);border:2px solid rgba(255,255,255,.06)}
+    .device-css{display:none;position:relative;width:min(440px,78vw);height:calc(min(440px,78vw)*2.02);border-radius:36px;padding:18px;background:linear-gradient(180deg,#0f1627,#0a0f1c);box-shadow:var(--shadow);border:2px solid rgba(255,255,255,.06)}
     .device-css:before{content:"";position:absolute;inset:12px;border-radius:28px;background:radial-gradient(240px 280px at 30% 10%, rgba(30,167,255,.20), transparent 60%), linear-gradient(180deg,#0b1320,#04070b)}
     .device-css .notch{position:absolute;top:9px;left:50%;transform:translateX(-50%);width:34%;height:18px;border-radius:0 0 12px 12px;background:#000c}
     .device-css .screen-copy{position:absolute;inset:48px 20px;border-radius:22px;background:linear-gradient(180deg,#101b2f,#0d1424);display:grid;place-items:center;color:#bfe5ff;font:700 18px Inter;text-align:center}
@@ -106,7 +106,7 @@
 
       <div class="stage">
         <!-- Celular como imagen (recomendado). Archivo: /img/phone.png -->
-        <img class="device-img" id="deviceImg" alt="App en el teléfono" loading="eager" decoding="async" style="display:none">
+        <img class="device-img" id="deviceImg" src="/img/Phone.png" alt="App en el teléfono" loading="eager" decoding="async" onerror="this.style.display='none';document.querySelector('.device-css').style.display='block'">
         <!-- Fallback por CSS si la imagen no está -->
         <div class="device-css">
           <div class="notch"></div>
@@ -159,26 +159,18 @@
     const cta = document.getElementById('cta');
     cta.href = buildWaUrl();
 
-    // ===== Imagen del celular: autodetección de archivo =====
+    // ===== Imagen del celular: seteo simple + override por query =====
     (function(){
-      const q = new URLSearchParams(location.search);
-      const override = q.get('img'); // Permite ?img=Phone.png o ?img=carpeta/mystake.webp
-      const base = 'img/';
-      const cands = [];
-      if (override) cands.push(override.includes('/') ? override : base + override);
-      cands.push(base+'phone.png', base+'Phone.png', base+'phone.webp', base+'phone.jpg', base+'phone.jpeg', base+'mystake.png', base+'mystake.webp');
-
       const el = document.getElementById('deviceImg');
-      const fallback = document.querySelector('.device-css');
-
-      function tryNext(i){
-        if(i >= cands.length){ fallback.style.display='block'; el.style.display='none'; return; }
-        const test = new Image();
-        test.onload = function(){ el.src = cands[i]; el.style.display='block'; fallback.style.display='none'; };
-        test.onerror = function(){ tryNext(i+1); };
-        test.src = cands[i] + '?v=' + Date.now(); // rompepache cache en deploys sucesivos
+      const fb = document.querySelector('.device-css');
+      // Si nos pasan ?img=... reemplazamos el src
+      const q = new URLSearchParams(location.search);
+      const override = q.get('img');
+      if (override) {
+        el.src = override.startsWith('/') || override.includes('http') ? override : '/img/' + override;
       }
-      tryNext(0);
+      // Por si falla la carga
+      el.addEventListener('error', ()=>{ fb.style.display='block'; el.style.display='none'; });
     })();
   </script>
 </body>
