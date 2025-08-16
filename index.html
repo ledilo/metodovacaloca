@@ -106,7 +106,7 @@
 
       <div class="stage">
         <!-- Celular como imagen (recomendado). Archivo: /img/phone.png -->
-        <img class="device-img" id="deviceImg" src="img/phone.png" alt="App en el teléfono" onerror="this.style.display='none';document.querySelector('.device-css').style.display='block'">
+        <img class="device-img" id="deviceImg" alt="App en el teléfono" loading="eager" decoding="async" style="display:none">
         <!-- Fallback por CSS si la imagen no está -->
         <div class="device-css">
           <div class="notch"></div>
@@ -158,7 +158,28 @@
     }
     const cta = document.getElementById('cta');
     cta.href = buildWaUrl();
+
+    // ===== Imagen del celular: autodetección de archivo =====
+    (function(){
+      const q = new URLSearchParams(location.search);
+      const override = q.get('img'); // Permite ?img=Phone.png o ?img=carpeta/mystake.webp
+      const base = 'img/';
+      const cands = [];
+      if (override) cands.push(override.includes('/') ? override : base + override);
+      cands.push(base+'phone.png', base+'Phone.png', base+'phone.webp', base+'phone.jpg', base+'phone.jpeg', base+'mystake.png', base+'mystake.webp');
+
+      const el = document.getElementById('deviceImg');
+      const fallback = document.querySelector('.device-css');
+
+      function tryNext(i){
+        if(i >= cands.length){ fallback.style.display='block'; el.style.display='none'; return; }
+        const test = new Image();
+        test.onload = function(){ el.src = cands[i]; el.style.display='block'; fallback.style.display='none'; };
+        test.onerror = function(){ tryNext(i+1); };
+        test.src = cands[i] + '?v=' + Date.now(); // rompepache cache en deploys sucesivos
+      }
+      tryNext(0);
+    })();
   </script>
 </body>
 </html>
-
