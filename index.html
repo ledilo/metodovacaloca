@@ -1,325 +1,164 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="robots" content="noindex, nofollow">
-  <title>Bono Activado - Jugá Ahora</title>
-  <!-- Meta Pixel Code -->
-<script>
-  !function(f,b,e,v,n,t,s){
-    if(f.fbq)return;n=f.fbq=function(){
-      n.callMethod ? n.callMethod.apply(n,arguments) : n.queue.push(arguments)};
-    if(!f._fbq)f._fbq=n;
-    n.push=n;n.loaded=!0;n.version='2.0';
-    n.queue=[];t=b.createElement(e);t.async=!0;
-    t.src=v;s=b.getElementsByTagName(e)[0];
-    s.parentNode.insertBefore(t,s)
-  }(window, document, 'script',
-    'https://connect.facebook.net/en_US/fbevents.js');
-  fbq('init', '527295206981757');
-  fbq('track', 'PageView');
-</script>
-<noscript>
-  <img height="1" width="1" style="display:none"
-       src="https://www.facebook.com/tr?id=527295206981757&ev=PageView&noscript=1"/>
-</noscript>
-<!-- End Meta Pixel Code -->
-
-<script>
-  // Evento Subscribe al hacer clic en los botones
-  window.addEventListener('DOMContentLoaded', function () {
-    document.getElementById("cta").addEventListener("click", function () {
-      fbq('track', 'Subscribe', { content_name: 'Botón WhatsApp' });
-    });
-    document.getElementById("flotante").addEventListener("click", function () {
-      fbq('track', 'Subscribe', { content_name: 'Botón Flotante' });
-    });
-  });
-</script>
-
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="color-scheme" content="dark" />
+  <title>¡Creamos tu usuario!</title>
+  <meta name="description" content="Creamos tu usuario en minutos. Contador activo, contacto directo por WhatsApp. Mínimo de carga $2000." />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;800&family=Inter:wght@400;600&display=swap" rel="stylesheet">
   <style>
-    body {
-      margin: 0;
-      font-family: 'Arial', sans-serif;
-      background: #000;
-      color: #0f0;
-      text-align: center;
+    :root{
+      --blue:#1ea7ff;      /* azul principal */
+      --blue-2:#0ea5e9;    /* acento */
+      --bg:#05070b;        /* negro azulado */
+      --card:#0b1320;
+      --text:#e9f1ff;
+      --muted:#9fb3c8;
+      --wa:#25D366;        /* color del botón de WhatsApp */
+      --shadow: 0 10px 30px rgba(30,167,255,.20), 0 6px 18px rgba(0,0,0,.35);
     }
-    header {
-      padding: 30px 20px 20px;
-      background: linear-gradient(to bottom, #050, #000);
-      position: relative;
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family:Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      color:var(--text);
+      background:
+        radial-gradient(1200px 600px at 80% -10%, rgba(30,167,255,.22), transparent 60%),
+        radial-gradient(1000px 600px at -10% 110%, rgba(14,165,233,.18), transparent 60%),
+        #05070b;
     }
-    h1 {
-      font-size: 1.8rem;
-      color: #0f0;
-      margin: 10px 0;
+
+    .wrap{max-width:1000px;margin:0 auto;padding:26px 16px 64px}
+    header{display:flex;align-items:center;justify-content:center;margin:6px 0 10px}
+    header img{height:40px;width:auto;filter:drop-shadow(0 2px 8px rgba(30,167,255,.35))}
+
+    .hero{display:grid;place-items:center;gap:16px;text-align:center}
+    .kicker{font:600 14px/1 Poppins,Inter,system-ui;color:var(--muted);letter-spacing:.14em;text-transform:uppercase}
+    h1{font:800 clamp(28px,7vw,56px)/1 Poppins,Inter,system-ui;margin:0;letter-spacing:.02em;text-shadow:0 6px 28px rgba(30,167,255,.28)}
+    h1 .stroke{color:transparent;-webkit-text-stroke:1px #bfe5ff; text-shadow:none}
+    .sub{font:600 clamp(13px,2.8vw,18px)/1.25 Poppins;margin:2px 0 8px;color:#b9d6f5;letter-spacing:.08em;text-transform:uppercase}
+
+    .timer{display:inline-flex;align-items:center;justify-content:center;padding:14px 22px;border-radius:999px;background:linear-gradient(180deg,#16a34a,#059669);
+      color:#fff;font:800 clamp(24px,6.5vw,40px)/1 Poppins;box-shadow:0 12px 28px rgba(5,150,105,.35);min-width:210px;letter-spacing:.04em}
+
+    .cta{display:inline-flex;align-items:center;gap:10px;margin-top:6px;padding:14px 22px;border:none;border-radius:14px;background:var(--wa);
+      color:#fff;font:700 17px/1.1 Inter;text-decoration:none;box-shadow:0 10px 22px rgba(37,211,102,.35)}
+    .cta img{width:22px;height:22px}
+    .cta:active{transform:translateY(1px)}
+
+    .minimo{margin:18px 0 8px;font:600 clamp(14px,3.8vw,18px)/1.2 Poppins;color:#b9d6f5;letter-spacing:.08em}
+    .minimo span{display:block;font:800 clamp(28px,9vw,56px)/1 Poppins;color:#fff}
+
+    .stage{position:relative;display:grid;place-items:center;margin:12px 0 24px;width:min(960px,100%)}
+    .device-img{width:min(440px,78vw);height:auto;filter:drop-shadow(0 24px 48px rgba(0,0,0,.6)) drop-shadow(0 0 32px rgba(30,167,255,.22))}
+
+    /* Fallback "celular" por CSS si no se sube la imagen */
+    .device-css{display:none;position:relative;width:min(400px,78vw);height:calc(min(400px,78vw)*2.02);border-radius:36px;padding:18px;background:linear-gradient(180deg,#0f1627,#0a0f1c);box-shadow:var(--shadow);border:2px solid rgba(255,255,255,.06)}
+    .device-css:before{content:"";position:absolute;inset:12px;border-radius:28px;background:radial-gradient(240px 280px at 30% 10%, rgba(30,167,255,.20), transparent 60%), linear-gradient(180deg,#0b1320,#04070b)}
+    .device-css .notch{position:absolute;top:9px;left:50%;transform:translateX(-50%);width:34%;height:18px;border-radius:0 0 12px 12px;background:#000c}
+    .device-css .screen-copy{position:absolute;inset:48px 20px;border-radius:22px;background:linear-gradient(180deg,#101b2f,#0d1424);display:grid;place-items:center;color:#bfe5ff;font:700 18px Inter;text-align:center}
+
+    /* Monedas opcionales */
+    .coin{position:absolute;width:64px;height:64px;filter:drop-shadow(0 8px 20px rgba(0,0,0,.6));animation:float 6s ease-in-out infinite;opacity:.95}
+    .coin.c1{left:6%;top:54%}
+    .coin.c2{right:10%;top:36%;animation-delay:1.2s}
+    .coin.c3{right:18%;bottom:6%;animation-delay:.6s}
+    @keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-14px)}}
+
+    footer{margin-top:24px;color:#8aa4bf;font:500 12px/1.4 Inter;text-align:center;opacity:.9}
+    footer a{color:#bfe5ff}
+
+    @media (min-width:920px){
+      .wrap{padding-bottom:88px}
+      .hero{gap:18px}
+      .stage{margin:24px 0 32px}
     }
-    h2 {
-      font-size: 1.1rem;
-      color: #ccc;
-      margin: 10px 0;
-    }
-    .boton-grande {
-      display: inline-block;
-      background: #0f0;
-      color: #000;
-      font-weight: bold;
-      padding: 18px 34px;
-      font-size: 1.2rem;
-      border-radius: 14px;
-      text-decoration: none;
-      margin: 20px auto;
-      animation: pulso 1.5s infinite;
-    }
-    @keyframes pulso {
-      0% { box-shadow: 0 0 0px #0f0; }
-      50% { box-shadow: 0 0 20px #0f0; }
-      100% { box-shadow: 0 0 0px #0f0; }
-    }
-    section {
-      padding: 30px 15px;
-    }
-    .juegos {
-      font-size: 1rem;
-      margin: 10px 0;
-    }
-    footer {
-      padding: 20px;
-      font-size: 0.9rem;
-      color: #777;
-    }
-    .boton-flotante {
-      position: fixed;
-      bottom: 20px;
-      left: 50%;
-      transform: translateX(-50%);
-      background: #0f0;
-      color: #000;
-      padding: 14px 28px;
-      font-weight: bold;
-      border-radius: 50px;
-      text-decoration: none;
-      box-shadow: 0 0 10px #0f0;
-      animation: rebote 1s infinite;
-      z-index: 1000;
-      font-size: 1.1rem;
-    }
-    @keyframes rebote {
-      0%, 100% { transform: translate(-50%, 0); }
-      50% { transform: translate(-50%, -8px); }
-    }
-    .contador {
-      font-size: 1rem;
-      margin: 0 auto 16px;
-      padding: 10px 16px;
-      background: #ff0000;
-      color: #fff;
-      font-weight: bold;
-      display: inline-block;
-      border-radius: 8px;
-      box-shadow: 0 0 10px #f00;
-      opacity: 1;
-      transition: opacity 0.3s ease-in;
-    }
-    .separador {
-      height: 1px;
-      background: #0f0;
-      width: 80%;
-      margin: 30px auto;
-      opacity: 0.2;
-    }
-    .testimonio {
-      background: #111;
-      border: 1px solid #0f0;
-      border-radius: 10px;
-      margin: 15px auto;
-      padding: 15px;
-      max-width: 380px;
-      text-align: left;
-      display: flex;
-      align-items: center;
-      gap: 15px;
-      color: #ccc;
-    }
-    .testimonio img {
-      width: 55px;
-      height: 55px;
-      border-radius: 50%;
-      object-fit: cover;
-      border: 2px solid #0f0;
-    }
-    .testimonio .contenido {
-      flex: 1;
-    }
-    .testimonio .nombre {
-      color: #0f0;
-      font-weight: bold;
-      margin-bottom: 5px;
-    }
-    .popup {
-      position: fixed;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      background: #111;
-      color: #fff;
-      padding: 20px;
-      border: 2px solid #f00;
-      border-radius: 12px;
-      z-index: 9999;
-      display: none;
-      max-width: 90%;
-    }
-    .popup h3 {
-      color: #f00;
-      margin-bottom: 10px;
-    }
-    .popup button {
-      background: #0f0;
-      color: #000;
-      font-weight: bold;
-      border: none;
-      padding: 10px 20px;
-      margin-top: 10px;
-      border-radius: 8px;
-    }
-    @media screen and (max-width: 480px) {
-      h1 { font-size: 1.5rem; }
-      h2 { font-size: 1rem; }
-      .boton-grande { font-size: 1.1rem; padding: 16px 26px; }
-      .boton-flotante { font-size: 1rem; padding: 12px 24px; }
+
+    /* Accesibilidad: menos animación */
+    @media (prefers-reduced-motion: reduce){
+      .coin{animation:none}
+      .cta,.timer{transition:none}
     }
   </style>
 </head>
 <body>
-  <header>
-    <div class="contador" id="countdown">⏳ TU BONO EXPIRA EN: 5:00</div>
-    <h1>¡BONO DE BIENVENIDA ACTIVADO!</h1>
-    <h2>Jugá desde el celu y cobrá hoy mismo</h2>
-    <a href="#" id="cta" class="boton-grande">PEDIR BONO AHORA</a>
-  </header>
+  <div class="wrap">
+    <header>
+      <!-- Subí tu logo a /img/logo.png (opcional) -->
+      <img src="img/logo.png" alt="Logo" onerror="this.style.display='none'">
+    </header>
 
-  <section>
-    <h2>+20% en cargas mayores a $3.000 – Solo por hoy</h2>
-    <div class="separador"></div>
-    <p class="juegos">🐔 Pollo – 🎈 Globo – 🎹 Piano – 🧱 Torre – ❄️ Yeti</p>
-    <p class="juegos">Jugá sin descargar nada. Desde WhatsApp.</p>
-  </section>
+    <section class="hero" aria-labelledby="t1">
+      <div class="kicker">Oferta por tiempo limitado</div>
+      <h1 id="t1">Creamos <span class="stroke">tu usuario</span></h1>
+      <div class="sub">¡Antes de que termine el tiempo!</div>
 
-  <section>
-    <h2>Testimonios de jugadores reales</h2>
-    <div class="testimonio-carousel" id="testimonios"></div>
-    <div class="separador"></div>
-  </section>
+      <div id="timer" class="timer" aria-live="polite">00:59</div>
 
-  <div class="popup" id="popup">
-    <h3>⚠️ ¡Esperá!</h3>
-    <p>Tu bono sigue activo por pocos minutos.<br>Si no escribís ahora, lo perdés.</p>
-    <button onclick="cerrarPopup()">Entendido</button>
+      <a id="cta" class="cta" href="#" rel="nofollow noopener">
+        <img src="https://static.whatsapp.net/rsrc.php/yk/r/TZr2yAYt4n9.svg" alt="">¡Háblanos por WhatsApp!
+      </a>
+
+      <div class="minimo">MÍNIMO DE CARGA <span id="minimo">$2000</span></div>
+
+      <div class="stage">
+        <!-- Celular como imagen (recomendado). Archivo: /img/phone.png -->
+        <img class="device-img" id="deviceImg" src="img/phone.png" alt="App en el teléfono" onerror="this.style.display='none';document.querySelector('.device-css').style.display='block'">
+        <!-- Fallback por CSS si la imagen no está -->
+        <div class="device-css">
+          <div class="notch"></div>
+          <div class="screen-copy">Vista previa del teléfono</div>
+        </div>
+        <!-- Monedas opcionales (mismo archivo reutilizado) /img/coin.png -->
+        <img class="coin c1" src="img/coin.png" alt="" onerror="this.remove()">
+        <img class="coin c2" src="img/coin.png" alt="" onerror="this.remove()">
+        <img class="coin c3" src="img/coin.png" alt="" onerror="this.remove()">
+      </div>
+    </section>
+
+    <footer>
+      Atención 24/7 · Soporte por WhatsApp · Diseño azul/negro optimizado para móviles.
+    </footer>
   </div>
 
-  <footer>
-    <p>© 2025 – Sitio de entretenimiento. Solo para mayores de 18 años.</p>
-  </footer>
-
-  <a href="#" id="flotante" class="boton-flotante">PEDIR BONO AHORA</a>
-
   <script>
-    const numeroCodificado = "NTQ5MjYxNjA4NzIyMw==";
-    const numero = atob(numeroCodificado);
-    const mensaje = encodeURIComponent("Hola, quiero activar mi BONO de casino ✅");
-    const url = `https://wa.me/${numero}?text=${mensaje}`;
+    // ======= CONFIGURACIÓN RÁPIDA =======
+    const MINIMO_CARGA = 2000; // cambia el mínimo
+    const DEFAULT_WHATSAPP = "+5492610000000"; // <-- REEMPLAZÁ con tu número (con código de país, sin espacios)
+    const MENSAJE_BASE = "¡Hola! Vengo por el aviso y quiero crear mi usuario.";
+    // ====================================
 
-    document.getElementById("cta").href = url;
-    document.getElementById("flotante").href = url;
+    // Pintar el mínimo de carga con formato local
+    const minimoEl = document.getElementById('minimo');
+    minimoEl.textContent = new Intl.NumberFormat('es-AR', { style: 'currency', currency: 'ARS', maximumFractionDigits: 0 }).format(MINIMO_CARGA);
 
-    // Contador regresivo inmediato
-    let duracion = 5 * 60;
-    const countdown = document.getElementById("countdown");
-    const intervalo = setInterval(() => {
-      const minutos = Math.floor(duracion / 60);
-      const segundos = duracion % 60;
-      countdown.textContent = `⏳ TU BONO EXPIRA EN: ${minutos}:${segundos.toString().padStart(2, '0')}`;
-      if (--duracion < 0) {
-        clearInterval(intervalo);
-        countdown.textContent = "❌ EL BONO EXPIRÓ. RECARGÁ LA PÁGINA.";
-      }
-    }, 1000);
+    // Contador evergreen (reinicia a 59s)
+    let secs = 59;
+    const tEl = document.getElementById('timer');
+    const tick = () => {
+      const mm = String(Math.floor(secs/60)).padStart(2,'0');
+      const ss = String(secs % 60).padStart(2,'0');
+      tEl.textContent = `${mm}:${ss}`;
+      secs = (secs <= 0) ? 59 : secs - 1;
+    };
+    tick();
+    setInterval(tick, 1000);
 
-    // Carrusel de testimonios
-    const testimoniosData = [
-      { img: "https://randomuser.me/api/portraits/men/32.jpg", nombre: "Carlos A.", mensaje: "Cargué $5.000 y retiré $22.000 con el del pollo. ¡Increíble!" },
-      { img: "https://randomuser.me/api/portraits/women/45.jpg", nombre: "Valentina R.", mensaje: "Pensé que era joda. Hoy cobro todas las semanas 😱" },
-      { img: "https://randomuser.me/api/portraits/men/52.jpg", nombre: "Nahuel G.", mensaje: "Gané con el globo y retiré en menos de 5 minutos. ¡Muy bueno!" },
-      { img: "https://randomuser.me/api/portraits/women/21.jpg", nombre: "Antonella S.", mensaje: "Recargué $3.000 y me dieron bono extra. Retiré sin problema." }
-    ];
-    const contenedorTestimonios = document.getElementById("testimonios");
-    let indice = 0;
-
-    function mostrarTestimonio() {
-      const t = testimoniosData[indice];
-      contenedorTestimonios.innerHTML = `
-        <div class="testimonio">
-          <img src="${t.img}" alt="Testimonio">
-          <div class="contenido">
-            <div class="nombre">${t.nombre}</div>
-            <div class="mensaje">${t.mensaje}</div>
-          </div>
-        </div>
-      `;
-      indice = (indice + 1) % testimoniosData.length;
+    // Construir link de WhatsApp (permite override por query ?wa= y pasa src si existe)
+    function buildWaUrl(){
+      const q = new URLSearchParams(location.search);
+      const n = (q.get('wa') || DEFAULT_WHATSAPP).replace(/\D/g,'');
+      const src = q.get('src');
+      let msg = MENSAJE_BASE + ` Mínimo de carga ${minimoEl.textContent}.`;
+      if (src) msg += ` (src=${src})`;
+      return `https://wa.me/${n}?text=${encodeURIComponent(msg)}`;
     }
-
-    mostrarTestimonio();
-    setInterval(mostrarTestimonio, 5000);
-
-    // Exit intent popup
-    let popupMostrado = false;
-    document.addEventListener("mouseout", function(e) {
-      if (!popupMostrado && e.clientY < 50) {
-        document.getElementById("popup").style.display = "block";
-        popupMostrado = true;
-      }
-    });
-
-    function cerrarPopup() {
-      document.getElementById("popup").style.display = "none";
-    }
+    const cta = document.getElementById('cta');
+    cta.href = buildWaUrl();
   </script>
-  <!-- Meta Pixel Code -->
-<script>
-  !function(f,b,e,v,n,t,s){
-    if(f.fbq)return;n=f.fbq=function(){
-      n.callMethod ? n.callMethod.apply(n,arguments) : n.queue.push(arguments)};
-    if(!f._fbq)f._fbq=n;
-    n.push=n;n.loaded=!0;n.version='2.0';
-    n.queue=[];t=b.createElement(e);t.async=!0;
-    t.src=v;s=b.getElementsByTagName(e)[0];
-    s.parentNode.insertBefore(t,s)
-  }(window, document, 'script',
-    'https://connect.facebook.net/en_US/fbevents.js');
-  fbq('init', '527295206981757');
-  fbq('track', 'PageView');
-</script>
-<noscript>
-  <img height="1" width="1" style="display:none"
-       src="https://www.facebook.com/tr?id=527295206981757&ev=PageView&noscript=1"/>
-</noscript>
-<!-- End Meta Pixel Code -->
-
-<script>
-  // Evento Subscribe al hacer clic en los botones
-  window.addEventListener('DOMContentLoaded', function () {
-    document.getElementById("cta").addEventListener("click", function () {
-      fbq('track', 'Subscribe', { content_name: 'Botón WhatsApp' });
-    });
-    document.getElementById("flotante").addEventListener("click", function () {
-      fbq('track', 'Subscribe', { content_name: 'Botón Flotante' });
-    });
-  });
-</script>
 </body>
 </html>
 
