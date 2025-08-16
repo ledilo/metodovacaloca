@@ -46,7 +46,7 @@
 
     .cta{display:inline-flex;align-items:center;gap:10px;margin-top:6px;padding:14px 22px;border:none;border-radius:14px;background:var(--wa);
       color:#fff;font:700 17px/1.1 Inter;text-decoration:none;box-shadow:0 10px 22px rgba(37,211,102,.35)}
-    .cta img{width:22px;height:22px}
+    .cta img, .cta .wa-ico{width:22px;height:22px}
     .cta:active{transform:translateY(1px)}
 
     .minimo{margin:18px 0 8px;font:600 clamp(14px,3.8vw,18px)/1.2 Poppins;color:#b9d6f5;letter-spacing:.08em}
@@ -99,7 +99,10 @@
       <div id="timer" class="timer" aria-live="polite">00:59</div>
 
       <a id="cta" class="cta" href="#" rel="nofollow noopener">
-        <img src="https://static.whatsapp.net/rsrc.php/yk/r/TZr2yAYt4n9.svg" alt="">¡Háblanos por WhatsApp!
+        <svg class="wa-ico" viewBox="0 0 24 24" aria-hidden="true">
+          <path fill="currentColor" d="M12 2a9 9 0 00-7.8 13.5L3 22l6.7-1.8A9 9 0 1012 2zm4.7 12.6c-.2.5-1.1 1-1.6 1.1-.4.1-1 .1-1.6 0-.3-.1-.7-.2-1.2-.5-2.1-1-3.4-3.1-3.5-3.3-.1-.2-.8-1.2-.8-2.3s.5-1.6.7-1.8c.2-.2.4-.3.6-.3h.4c.1 0 .3 0 .4.3l.8 1.9c.1.2.1.4 0 .6l-.4.6c-.1.2-.2.3 0 .6.2.3.7 1.1 1.6 1.8.9.8 1.7 1.1 2 .9.3-.4.5-.6.7-.5l1.8.8c.3.1.3.3.3.5 0 .1 0 .3-.2.5z"/>
+        </svg>
+        ¡Háblanos por WhatsApp!
       </a>
 
       <div class="minimo">MÍNIMO DE CARGA <span id="minimo">$2000</span></div>
